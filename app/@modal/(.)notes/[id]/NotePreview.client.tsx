@@ -23,8 +23,8 @@ export default function NotePreviewClient() {
 
   return (
     <Modal onClose={() => router.back()}>
-      {isError && <p>Loading, please wait...</p>}
-      {isLoading && <p>Something went wrong.</p>}
+      {isError && <p>Something went wrong.</p>}
+      {isLoading && <p>Loading, please wait...</p>}
       {note && (
         <div className={css.container}>
           <div className={css.item}>
