@@ -20,10 +20,11 @@ const notesApi = axios.create({
 
 export async function fetchNotes(
   page: number,
-  search?: string
+  search?: string,
+  tag?: NoteTag
 ): Promise<FetchNotesResponse> {
   const { data } = await notesApi.get<FetchNotesResponse>('/notes', {
-    params: { page, search, perPage: 12 },
+    params: { page, search, perPage: 12, tag },
   });
   return data;
 }

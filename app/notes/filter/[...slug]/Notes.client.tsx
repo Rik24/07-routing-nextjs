@@ -10,15 +10,20 @@ import Modal from '@/components/Modal/Modal';
 import NoteForm from '@/components/NoteForm/NoteForm';
 import NoteList from '@/components/NoteList/NoteList';
 import { useDebouncedCallback } from 'use-debounce';
+import type { NoteTag } from '@/types/note';
 
-function NotesClient() {
+interface NotesClientProps {
+  tag?: NoteTag;
+}
+
+function NotesClient({ tag }: NotesClientProps) {
   const [page, setPage] = useState(1);
   const [search, setSearch] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const { data } = useQuery({
-    queryKey: ['notes', page, search],
-    queryFn: () => fetchNotes(page, search),
+    queryKey: ['notes', page, search, tag],
+    queryFn: () => fetchNotes(page, search, tag),
     placeholderData: keepPreviousData,
     refetchOnMount: false,
   });
